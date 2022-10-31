@@ -24,7 +24,9 @@ Route::middleware(['guest'])->group(function () {
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/scm/dashboard', [HomeController::class, 'dashboard'])->name('scm.dashboard');
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-    Route::get('/users', [UserController::class, 'index'])->name('admin.users');
+    Route::get('scm/dashboard', [HomeController::class, 'dashboard'])->name('scm.dashboard');
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('users', [UserController::class, 'index'])->name('admin.users');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::get('users/{user}/update', [UserController::class, 'update'])->name('admin.users.update');
 });

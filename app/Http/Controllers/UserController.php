@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +14,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.list');
+        $users = User::whereHas('role', function ($query) {
+            $query->where('nama_role', 'user');
+        })->get();
+        return view('admin.users.list', compact('users'));
     }
 
     /**
@@ -54,9 +58,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -66,9 +70,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $updated = $user->update($request->all());
+
+        if ($updated) {
+            return redirect()->route('admin.users')->with('success', 'Data Updated Succesfully');
+        }
+
+        return redirect()->back()->with('fail', 'Update data failed');
     }
 
     /**
