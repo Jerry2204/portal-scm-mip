@@ -1,0 +1,21 @@
+.btn-mandiri {
+    background-color: #293180;
+    color: #fff;
+}
+
+.btn-mandiri:hover {
+    color: #fff;
+    background-color: #1502bd;
+    border-color: #0062cc;
+}
+
+.mandiri-login-image {
+    height: 100px;
+}
+
+.login-page {
+    background-image: url('/login_style/images/section-mandiricoal-bg.jpg');
+    background-size: cover;
+}
+
+
