@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="auth-normal-sign-in.html">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="ti-layout-sidebar-left"></i> Logout
                             </a>
                         </li>
