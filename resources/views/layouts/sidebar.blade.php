@@ -16,7 +16,7 @@
             <div class="main-menu-content">
                 <ul>
                     <li class="more-details">
-                        <a href="#"><i class="ti-user"></i>View Profile</a>
+                        <a href="{{ route('admin.users.show') }}"><i class="ti-user"></i>View Profile</a>
                         <a href="#!"><i class="ti-settings"></i>Settings</a>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ti-layout-sidebar-left"></i>Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

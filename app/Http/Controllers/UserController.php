@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -68,9 +69,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('users.profile');
     }
 
     /**
@@ -100,6 +101,55 @@ class UserController extends Controller
         }
 
         return redirect()->back()->with('fail', 'Update data failed');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update_profile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required|email',
+            'password' => 'nullable|confirmed|min:12|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/'
+        ]);
+
+        $user_id = Auth::user()->id;
+
+        $user = User::find($user_id);
+
+        if($request->password) {
+            $updated = $user->update([
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+
+            if($updated) {
+                return back()->with('success', 'Profile updated succesfully');
+            }
+
+            return back()->with('fail', 'failed to update profile');
+        }
+
+        $updated = $user->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email
+        ]);
+
+        if($updated) {
+            return back()->with('success', 'Profile updated succesfully');
+        }
+
+        return back()->with('fail', 'failed to update profile');
+
     }
 
     /**

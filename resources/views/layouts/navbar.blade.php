@@ -41,7 +41,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('admin.users.show') }}">
                                 <i class="ti-user"></i> Profile
                             </a>
                         </li>
