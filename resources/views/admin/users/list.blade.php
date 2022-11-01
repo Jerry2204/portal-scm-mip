@@ -37,8 +37,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Hello card</h5>
-                    <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                    <a href="{{ route('admin.users.add') }}" class="btn btn-primary">Add User</a>
                     <div class="card-header-right">
                         <ul class="list-unstyled card-option" style="width: 35px;">
                             <li class=""><i class="icofont icofont-simple-left"></i></li>

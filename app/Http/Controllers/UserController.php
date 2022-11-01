@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.add');
     }
 
     /**
@@ -38,7 +39,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'dashboard_link' => $request->dashboard_link,
+            'password' => Hash::make('Mandiricoal2022!'),
+            'role_id' => 2
+        ]);
+
+        if($user) {
+            return redirect()->route('admin.users')->with('success', 'User Registered Succesfully');
+        }
+
+        return back()->with('fail', 'Failed to add new user');
     }
 
     /**
