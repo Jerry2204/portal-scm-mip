@@ -53,32 +53,52 @@
                     <h4 class="sub-title">Add User</h4>
                     <form action="{{ route('admin.users.store') }}" method="POST">
                         @csrf
-                        <div class="form-group row">
+                        <div class="form-group row {{ $errors->has('name') ? 'has-danger' : '' }}">
                             <label class="col-sm-2 col-form-label" for="name">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" id="name" name="name" class="form-control"
-                                placeholder="Name">
+                                <input type="text" id="name" name="name" class="form-control {{ $errors->has('name') ? 'form-control-danger' : '' }}"
+                                placeholder="Name" value="{{ old('name') }}">
+                                @if ($errors->has('name'))
+                                <div class="col-form-label">
+                                    {{ $errors->first('name') }}
+                                </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row {{ $errors->has('username') ? 'has-danger' : '' }}">
                             <label class="col-sm-2 col-form-label" for="username">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" id="username" name="username" class="form-control"
-                                placeholder="Username">
+                                <input type="text" id="username" name="username" class="form-control {{ $errors->has('username') ? 'form-control-danger' : '' }}"
+                                placeholder="Username" value="{{ old('username') }}">
+                                @if ($errors->has('username'))
+                                <div class="col-form-label">
+                                    {{ $errors->first('username') }}
+                                </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row {{ $errors->has('email') ? 'has-danger' : '' }}">
                             <label class="col-sm-2 col-form-label" for="email">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" id="email" name="email" class="form-control"
-                                placeholder="Email">
+                                <input type="text" id="email" name="email" class="form-control {{ $errors->has('email') ? 'form-control-danger' : '' }}"
+                                placeholder="Email" value="{{ old('email') }}">
+                                @if ($errors->has('email'))
+                                <div class="col-form-label">
+                                    {{ $errors->first('email') }}
+                                </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row {{ $errors->has('dashboard_link') ? 'has-danger' : '' }}">
                             <label class="col-sm-2 col-form-label" for="dashboard_link">Dashboard Link</label>
                             <div class="col-sm-10">
-                                <textarea rows="5" cols="5" type="text" id="dashboard_link" name="dashboard_link" class="form-control"
-                                placeholder="Dashboard Link"></textarea>
+                                <textarea rows="5" cols="5" type="text" id="dashboard_link" name="dashboard_link" class="form-control {{ $errors->has('dashboard_link') ? 'form-control-danger' : '' }}"
+                                placeholder="Dashboard Link">{{ old('name') }}</textarea>
+                                @if ($errors->has('dashboard_link'))
+                                <div class="col-form-label">
+                                    {{ $errors->first('dashboard_link') }}
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="text-center mt-5">
