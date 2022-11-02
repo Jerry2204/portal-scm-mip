@@ -30,11 +30,13 @@
       <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/style.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/jquery.mCustomScrollbar.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/custom.css') }}">
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       @yield('css')
   </head>
 
   <body>
+
     <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="ball-scale">
@@ -97,11 +99,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="fixed-button">
-                    <a href="https://codedthemes.com/item/guru-able-admin-template/" target="_blank" class="btn btn-md btn-primary">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade To Pro
-                    </a>
-                </div>
             </div>
         </div>
 <!-- Warning Section Ends -->
@@ -120,6 +117,7 @@
 <script src="{{ asset('admin/js/pcoded.min.js') }}"></script>
 <script src="{{ asset('admin/js/demo-12.js') }}"></script>
 <script src="{{ asset('admin/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+@yield('js')
 </body>
 
 </html>
