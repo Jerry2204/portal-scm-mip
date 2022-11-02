@@ -2,6 +2,20 @@
 
 @section('title', 'SCM - Mandiri Intiperkasa')
 
+@section('css')
+    <style>
+        @media only screen and (min-width: 1000px) {
+            .vertical-center {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+        }
+    </style>
+@endsection
+
 @section('content')
     <!-- Page-header start -->
     <div class="page-header card">
@@ -10,8 +24,10 @@
                 <div class="page-header-title">
                     <i class="icofont icofont icofont icofont-file-document bg-c-pink"></i>
                     <div class="d-inline">
-                        <h4>SCM Dashboard PT Mandiri Intiperkasa</h4>
-                        <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                        <div class="vertical-center">
+                            <h4>SCM Dashboard PT Mandiri Intiperkasa</h4>
+                        </div>
+                        {{-- <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span> --}}
                     </div>
                 </div>
             </div>
@@ -47,17 +63,9 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="card-block">
-                        <iframe width="1080" height="760" src="{{ auth()->user()->dashboard_link }}" frameborder="0" allowfullscreen></iframe>
-                        <p>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                            enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                            nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id est laborum."
-                        </p>
+                    <div class="card-block mb-5">
+                        <iframe width="1080" height="760" src="{{ auth()->user()->dashboard_link }}" frameborder="0"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

@@ -117,6 +117,19 @@
 <script src="{{ asset('admin/js/pcoded.min.js') }}"></script>
 <script src="{{ asset('admin/js/demo-12.js') }}"></script>
 <script src="{{ asset('admin/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script>
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('a');
+        const listItem = document.querySelectorAll('li');
+        const menuLength = menuItem.length;
+        let i;
+        for(i = 0; i < menuLength; i++){
+            if(menuItem[i].href == currentLocation){
+                menuItem[i].parentElement.className = "active";
+                break;
+            }
+        }
+    </script>
 @yield('js')
 </body>
 

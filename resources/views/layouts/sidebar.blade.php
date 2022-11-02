@@ -27,7 +27,7 @@
         </div>
         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="active">
+            <li>
                 <a href="{{ route('scm.dashboard') }}">
                     <span class="pcoded-micon"><i class="ti-home"></i></span>
                     <span class="pcoded-mtext" data-i18n="nav.dash.main">SCM Dashboard</span>
