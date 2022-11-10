@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -12,7 +13,13 @@ class HomeController extends Controller
     }
 
     public function index() {
-        return redirect()->route('scm.dashboard');
+        if(Auth::user()->role->nama_role == 'user') {
+            return redirect()->route('scm.dashboard');
+        }
+
+        if(Auth::user()->role->nama_role == 'admin') {
+            return redirect()->route('admin.users');
+        }
     }
 
     public function dashboard() {

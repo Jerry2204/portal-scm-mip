@@ -22,16 +22,22 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [LoginController::class, 'login'])->name('login');
 });
 
-Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('scm/dashboard', [HomeController::class, 'dashboard'])->name('scm.dashboard');
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
     Route::get('users', [UserController::class, 'index'])->name('admin.users');
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
     Route::post('users/{user}/update', [UserController::class, 'update'])->name('admin.users.update');
     Route::get('users/add', [UserController::class, 'create'])->name('admin.users.add');
     Route::post('users/add', [UserController::class, 'store'])->name('admin.users.store');
+    Route::delete('users/{user}/delete', [UserController::class, 'destroy'])->name('admin.users.delete');
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:user']], function(){
+    Route::get('scm/dashboard', [HomeController::class, 'dashboard'])->name('scm.dashboard');
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:admin,user']], function(){
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('users/profile', [UserController::class, 'show'])->name('admin.users.show');
     Route::post('users/update/profile', [UserController::class, 'update_profile'])->name('users.profile.update');
-    Route::delete('users/{user}/delete', [UserController::class, 'destroy'])->name('admin.users.delete');
 });

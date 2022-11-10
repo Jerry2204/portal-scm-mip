@@ -27,6 +27,7 @@
         </div>
         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
         <ul class="pcoded-item pcoded-left-item">
+            @if (auth()->user()->role->nama_role == 'user')
             <li>
                 <a href="{{ route('scm.dashboard') }}">
                     <span class="pcoded-micon"><i class="ti-home"></i></span>
@@ -34,6 +35,8 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            @endif
+            @if (auth()->user()->role->nama_role == 'admin')
             <li>
                 <a href="{{ route('admin.users') }}">
                     <span class="pcoded-micon"><i class="ti-user"></i></span>
@@ -41,6 +44,7 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
 </nav>
