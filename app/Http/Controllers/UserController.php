@@ -47,12 +47,14 @@ class UserController extends Controller
             'dashboard_link' => 'required',
         ]);
 
+        $password = "Mandiricoal" . now()->year . "!";
+
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'dashboard_link' => $request->dashboard_link,
-            'password' => Hash::make('Mandiricoal2022!'),
+            'password' => Hash::make($password),
             'role_id' => 2
         ]);
 

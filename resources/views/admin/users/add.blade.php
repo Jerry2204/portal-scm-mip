@@ -101,6 +101,13 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="">Password</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="email" name="email" class="form-control" disabled
+                                placeholder="Email" value="{{ "Mandiricoal" . now()->year . "!" }}">
+                            </div>
+                        </div>
                         <div class="text-center mt-5">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
