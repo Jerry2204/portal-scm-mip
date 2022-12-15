@@ -130,6 +130,25 @@
             }
         }
     </script>
+    <script>
+        $(".logout").click(function(e) {
+            id = e.target.dataset.id
+
+            Swal.fire({
+                text: "Are you sure you want to log out from this system?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, log out!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.preventDefault();
+                    document.getElementById('logout-form').submit();
+                }
+            })
+        })
+    </script>
 @yield('js')
 </body>
 

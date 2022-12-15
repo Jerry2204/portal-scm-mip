@@ -17,7 +17,7 @@
                 <ul>
                     <li class="more-details">
                         <a href="{{ route('admin.users.show') }}"><i class="ti-user"></i>View Profile</a>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                        <a class="logout" href="#"><i class="ti-layout-sidebar-left"></i>Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>

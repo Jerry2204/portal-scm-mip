@@ -113,39 +113,47 @@ class UserController extends Controller
     public function update_profile(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'email' => 'required|email',
-            'password' => 'nullable|confirmed|min:12|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/'
+            'old_password' => 'required'
         ]);
 
         $user_id = Auth::user()->id;
 
         $user = User::find($user_id);
 
-        if($request->password) {
+        if (Hash::check($request->old_password, $user->password)) {
+            $request->validate([
+                'name' => 'required',
+                'username' => 'required',
+                'email' => 'required|email',
+                'password' => 'nullable|confirmed|min:12|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+            ]);
+
+            if($request->password) {
+                $updated = $user->update([
+                    'name' => $request->name,
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password)
+                ]);
+
+                if($updated) {
+                    return back()->with('success', 'Profile updated succesfully');
+                }
+
+                return back()->with('fail', 'failed to update profile');
+            }
+
             $updated = $user->update([
                 'name' => $request->name,
                 'username' => $request->username,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'email' => $request->email
             ]);
 
             if($updated) {
                 return back()->with('success', 'Profile updated succesfully');
             }
-
-            return back()->with('fail', 'failed to update profile');
-        }
-
-        $updated = $user->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email
-        ]);
-
-        if($updated) {
-            return back()->with('success', 'Profile updated succesfully');
+        } else {
+            return back()->with('old_password', 'Old password does not match!');
         }
 
         return back()->with('fail', 'failed to update profile');

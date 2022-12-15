@@ -3,6 +3,23 @@
 @section('title', 'Profile')
 
 @section('content')
+    @if (session()->has('success'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                showConfirmButton: false,
+                timer: 2000,
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: '{{ session('success') }}'
+            })
+            </script>
+        {{-- <script>
+            Swal.fire('Saved!', '{{ session('success') }}', 'success', '')
+        </script> --}}
+    @endif
     <div class="page-body">
         <div class="row">
             <div class="col-sm-12">
@@ -64,12 +81,30 @@
                                             @endif
                                         </div>
                                     </div>
+                                    <div class="form-group row {{ session()->has('old_password') ? 'has-danger' : '' }} {{ $errors->has('old_password') ? 'has-danger' : '' }}">
+                                        <label class="col-sm-2 col-form-label" for="old_password">Old Password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" id="old_password" name="old_password"
+                                                class="form-control {{ session()->has('old_password') ? 'form-control-danger' : '' }} {{ $errors->has('old_password') ? 'form-control-danger' : '' }}"
+                                                placeholder="Old Password" value="">
+                                            @if (session()->has('old_password'))
+                                                <div class="col-form-label">
+                                                    {{ session('old_password') }}
+                                                </div>
+                                            @endif
+                                            @if ($errors->has('old_password'))
+                                                <div class="col-form-label">
+                                                    {{ $errors->first('old_password') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
                                     <div class="form-group row {{ $errors->has('password') ? 'has-danger' : '' }}">
-                                        <label class="col-sm-2 col-form-label" for="password">password</label>
+                                        <label class="col-sm-2 col-form-label" for="password">Password</label>
                                         <div class="col-sm-10">
                                             <input type="password" id="password" name="password"
                                                 class="form-control {{ $errors->has('password') ? 'form-control-danger' : '' }}"
-                                                placeholder="password" value="">
+                                                placeholder="Password" value="">
                                             @if ($errors->has('password'))
                                                 <div class="col-form-label">
                                                     @foreach ($errors->all() as $error)

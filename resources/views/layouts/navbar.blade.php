@@ -41,7 +41,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="#" class="logout">
                                 <i class="ti-layout-sidebar-left"></i> Logout
                             </a>
                         </li>
