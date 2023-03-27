@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="card-block mb-5">
-                        <iframe width="1080" height="760" src="{{ auth()->user()->dashboard_link }}" frameborder="0"
+                        <iframe title="SCM_Dashboard_MIP" width="1200" height="760" src="{{ auth()->user()->dashboard_link }}" frameborder="0"
                             allowfullscreen></iframe>
                     </div>
                 </div>
